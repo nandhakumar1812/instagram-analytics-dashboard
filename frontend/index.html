@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="description"
+        content="InstaAnalytics AI - Live Instagram analytics with scoring, compare, and Smart Analyst (rule-based).">
+    <title>InstaAnalytics - Live Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav class="nav-c np">
+        <div class="container d-flex align-items-center justify-content-between">
+            <a href="#" class="d-flex align-items-center gap-2 text-decoration-none">
+                <span
+                    style="font-size:26px;background:var(--ig);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"><i
+                        class="bi bi-instagram"></i></span>
+                <span class="nav-brand text-white">InstaAnalytics <span
+                        style="background:var(--ig);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text"></span></span>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <span class="live-b"><span class="dot"></span> Live Engine Active</span>
+                <button id="themeBtn" class="btn btn-sm btn-outline-secondary" style="color:#aaa;border-color:#444"
+                    title="Toggle dark mode"><i class="bi bi-moon-stars-fill" id="themeIco"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <!-- SEARCH -->
+        <div class="ca p-4 mb-4 np">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
+                <div>
+                    <h5 class="fw8 mb-1"><i class="bi bi-search me-2" style="color:var(--ac)"></i>Analyze Any Public
+                        Instagram Profile</h5>
+                    <p class="mb-0" style="font-size:12px;color:var(--tm)">Live data via Apify</p>
+                </div>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <label class="tg-w" id="cmpLabel">
+                        <div class="tg-t" id="cmpToggle">
+                            <div class="tg-th"></div>
+                        </div>
+                        <span style="font-size:13px;font-weight:600;color:var(--tm)">Compare Mode</span>
+                    </label>
+                    <select id="limSel" class="form-select form-select-sm"
+                        style="width:110px;font-size:12px;border-radius:8px">
+                        <option value="12">12 posts</option>
+                        <option value="20">20 posts</option>
+                        <option value="30">30 posts</option>
+                    </select>
+                    <button id="forceBtn" class="btn btn-sm btn-outline-secondary btn-ia"><i
+                            class="bi bi-arrow-repeat"></i> Refresh</button>
+                </div>
+            </div>
+            <div id="sinRow" class="row g-2 align-items-center">
+                <div class="col-lg-9 col-md-8">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text bg-light border-end-0"><i
+                                class="bi bi-link-45deg text-muted"></i></span>
+                        <input type="text" id="acIn" class="form-control bg-light border-start-0"
+                            placeholder="Paste Instagram link or type @username" autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 d-flex gap-2">
+                    <button id="srchBtn" class="btn btn-ig btn-ia btn-lg w-100 fw7"><i
+                            class="bi bi-graph-up-arrow me-1"></i> Analyze Live</button>
+                    <button id="clrBtn" class="btn btn-outline-secondary btn-ia btn-lg" title="Clear"><i
+                            class="bi bi-x-lg"></i></button>
+                </div>
+            </div>
+            <div id="cmpRow" class="d-none mt-2">
+                <div class="row g-2">
+                    <div class="col-md-5">
+                        <label class="form-label" style="font-size:12px;font-weight:600;color:var(--tm)">Account
+                            A</label>
+                        <div class="input-group"><span class="input-group-text bg-light border-end-0"><i
+                                    class="bi bi-link-45deg text-muted"></i></span>
+                            <input type="text" id="acInA" class="form-control bg-light border-start-0"
+                                placeholder="@username or URL" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label" style="font-size:12px;font-weight:600;color:var(--tm)">Account
+                            B</label>
+                        <div class="input-group"><span class="input-group-text bg-light border-end-0"><i
+                                    class="bi bi-link-45deg text-muted"></i></span>
+                            <input type="text" id="acInB" class="form-control bg-light border-start-0"
+                                placeholder="@username or URL" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button id="cmpBtn" class="btn btn-ig btn-ia btn-lg w-100 fw7"><i
+                                class="bi bi-intersect me-1"></i> Compare</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2 mt-3 flex-wrap">
+                <span style="font-size:11px;font-weight:700;color:var(--tm)">QUICK:</span>
+                <span class="qc" data-u="nasa">@nasa</span>
+                <span class="qc" data-u="apple">@apple</span>
+                <span class="qc" data-u="nike">@nike</span>
+                <span class="qc" data-u="cristiano">@cristiano</span>
+                <span class="qc" data-u="natgeo">@natgeo</span>
+            </div>
+            <div id="histWrap" class="mt-3 d-none">
+                <hr class="dvd my-2">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <span style="font-size:11px;font-weight:700;color:var(--tm)">RECENT:</span>
+                    <div id="histChips" class="d-flex gap-2 flex-wrap"></div>
+                    <button id="clrHistBtn" class="btn btn-sm" style="font-size:11px;padding:2px 8px;color:var(--tm)"
+                        title="Clear history"><i class="bi bi-trash3"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="alertBox" class="alert alert-danger d-none ria mb-3" role="alert" style="font-size:13px"></div>
+
+        <!-- EMPTY STATE -->
+        <div id="emptyState" class="ca">
+            <div class="es"><span class="es-i"><i class="bi bi-bar-chart-steps"></i></span>
+                <div class="es-t">No profile analysed yet</div>
+                <div class="es-s">Enter an Instagram username or URL above and click <strong>Analyze Live</strong></div>
+            </div>
+        </div>
+
+        <!-- SINGLE RESULTS -->
+        <div id="resWrap" class="d-none">
+            <div class="ca p-4 mb-4">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <img id="uAv" src="" class="av" alt="Avatar" referrerpolicy="no-referrer">
+                        <div>
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <h4 class="fw8 mb-0" id="uName">--</h4>
+                                <i id="verBadge" class="bi bi-patch-check-fill text-primary fs-5 d-none"
+                                    title="Verified"></i>
+                                <span class="badge bg-light text-muted border small ms-1" id="uCat">--</span>
+                            </div>
+                            <div class="text-muted" id="uHdl" style="font-size:14px;font-weight:600">@--</div>
+                            <p class="text-muted small mt-1 mb-0" id="uBio" style="max-width:600px;line-height:1.5"></p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a id="extLink" href="#" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline-primary btn-ia btn-sm d-none"><i class="bi bi-instagram me-1"></i>
+                            Open Profile</a>
+                        <button id="cpyBtn" class="btn btn-outline-secondary btn-ia btn-sm np"><i
+                                class="bi bi-clipboard"></i> Copy</button>
+                        <button id="dlBtn" class="btn btn-outline-secondary btn-ia btn-sm np"><i
+                                class="bi bi-download"></i> Download</button>
+                        <button id="prtBtn" class="btn btn-outline-secondary btn-ia btn-sm np"><i
+                                class="bi bi-printer"></i> Print</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 mb-4" id="kpiRow"></div>
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4">
+                    <div class="ca p-4 h-100">
+                        <div class="st"><i class="bi bi-speedometer2 me-1"></i>Account Score</div>
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <div class="ring-w">
+                                <svg viewBox="0 0 140 140">
+                                    <circle class="ring-t" cx="70" cy="70" r="60" />
+                                    <circle class="ring-f" id="rFill" cx="70" cy="70" r="60" stroke-dasharray="376.99"
+                                        stroke-dashoffset="376.99" stroke="url(#igG)" />
+                                    <defs>
+                                        <linearGradient id="igG" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#f09433" />
+                                            <stop offset="50%" stop-color="#dc2743" />
+                                            <stop offset="100%" stop-color="#bc1888" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div>
+                                    <div class="ring-n" id="sVal">--</div>
+                                    <div class="ring-g" id="sGrd">--</div>
+                                </div>
+                            </div>
+                            <div class="mt-2"><span id="sTier" class="badge rounded-pill"
+                                    style="font-size:12px">--</span></div>
+                            <div class="mt-1" id="sConf"></div>
+                            <div class="mt-1" id="sBase" style="font-size:11px;color:var(--tm)"></div>
+                        </div>
+                        <hr class="dvd">
+                        <div class="st"><i class="bi bi-bar-chart-steps me-1"></i>Components</div>
+                        <div id="cBars"></div>
+                        <div class="cbx cbh240 mt-3"><canvas id="rdrChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="ca p-4 h-100">
+                        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+                            <div class="st mb-0"><i class="bi bi-lightbulb me-1" style="color:var(--ye)"></i>Smart
+                                Analyst <span class="badge ms-1"
+                                    style="font-size:10px;background:var(--sf2);border:1px solid var(--bd);color:var(--tm)">rule-based</span>
+                            </div>
+                            <div class="d-flex gap-2 flex-wrap" id="qChips">
+                                <button class="qc" data-q="score">Why this score?</button>
+                                <button class="qc" data-q="format">Best format?</button>
+                                <button class="qc" data-q="comments">More comments?</button>
+                                <button class="qc" data-q="trend">Trend?</button>
+                                <button class="qc" data-q="bestpost">Best post?</button>
+                            </div>
+                        </div>
+                        <div id="insHL" class="p-3 rias mb-3 bg-igs"
+                            style="font-size:14px;font-weight:600;line-height:1.5"></div>
+                        <div id="qaBox" class="p-3 rias mb-3 d-none"
+                            style="background:var(--sf2);border:1px solid var(--bd);font-size:13px"></div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <div class="st"><i class="bi bi-check-circle-fill me-1"
+                                        style="color:var(--gn)"></i>Strengths</div>
+                                <div id="strList"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="st"><i class="bi bi-exclamation-circle-fill me-1"
+                                        style="color:var(--rd)"></i>Weaknesses</div>
+                                <div id="wkList"></div>
+                            </div>
+                        </div>
+                        <div class="st"><i class="bi bi-eye me-1"></i>Content Insights</div>
+                        <div id="cIns" class="mb-3"></div>
+                        <div class="st"><i class="bi bi-arrow-right-circle me-1"></i>Recommended Actions</div>
+                        <div id="actList" class="mb-3"></div>
+                        <div id="cavList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mb-4">
+                <div class="col-lg-8">
+                    <div class="ca p-4">
+                        <div class="st"><i class="bi bi-bar-chart-fill me-1"></i>Post-Level Interactions</div>
+                        <div class="cbx cbh280"><canvas id="barChart"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="ca p-4">
+                        <div class="st"><i class="bi bi-pie-chart-fill me-1"></i>Format Mix</div>
+                        <div class="cbx cbh280"><canvas id="fmtChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ca mb-4">
+                <div class="d-flex align-items-center justify-content-between p-3"
+                    style="border-bottom:1px solid var(--bd)">
+                    <div class="st mb-0"><i class="bi bi-collection-play me-1"></i>Live Media Feed</div>
+                    <span id="hdnNote" class="d-none" style="font-size:11px;color:var(--tm)"></span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table ti mb-0">
+                        <thead>
+                            <tr>
+                                <th>Thumb</th>
+                                <th>Caption &amp; Tags</th>
+                                <th>Format</th>
+                                <th>Likes</th>
+                                <th>Comments</th>
+                                <th>Eng%</th>
+                                <th>Open</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="ca mb-4">
+                <div class="ah" id="scAccH">
+                    <div class="st mb-0"><i class="bi bi-question-circle me-1"></i>How is this scored? (Full
+                        Transparency)</div><i class="bi bi-chevron-down" id="scChev"></i>
+                </div>
+                <div class="ab" id="scAccB">
+                    <div id="scForm" style="font-size:12px;color:var(--tm)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPARE RESULTS -->
+        <div id="cmpWrap" class="d-none">
+            <div class="ca p-4 mb-4">
+                <div class="st text-center mb-3"><i class="bi bi-intersect me-1"></i>Head-to-Head Comparison</div>
+                <div class="d-flex gap-4 flex-wrap">
+                    <div class="cc" id="profA"></div>
+                    <div class="d-flex align-items-center justify-content-center"
+                        style="font-size:24px;font-weight:800;color:var(--tm)">VS</div>
+                    <div class="cc" id="profB"></div>
+                </div>
+            </div>
+            <div class="row g-4 mb-4" id="cmpSR"></div>
+            <div class="row g-4 mb-4">
+                <div class="col-lg-6">
+                    <div class="ca p-4">
+                        <div class="st"><i class="bi bi-hexagon me-1"></i>Radar Overlay</div>
+                        <div class="cbx cbh280"><canvas id="cmpRdr"></canvas></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ca p-4">
+                        <div class="st"><i class="bi bi-bar-chart-line me-1"></i>Engagement per Post</div>
+                        <div class="cbx cbh280"><canvas id="cmpLine"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ca mb-4">
+                <div class="p-3 st mb-0" style="border-bottom:1px solid var(--bd)"><i
+                        class="bi bi-table me-1"></i>Metric Comparison</div>
+                <div class="table-responsive">
+                    <table class="table ti mb-0" id="cmpTbl"></table>
+                </div>
+            </div>
+            <div class="ca p-4 mb-4">
+                <div class="st"><i class="bi bi-lightbulb me-1" style="color:var(--ye)"></i>Analyst Verdict <span
+                        class="badge ms-1"
+                        style="font-size:10px;background:var(--sf2);border:1px solid var(--bd);color:var(--tm)">rule-based</span>
+                </div>
+                <div id="cmpVerdict"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -12,11 +12,11 @@ const CFG = {
     MAX_WATCHLIST: 20,
     W: { engQ: .30, cons: .20, conv: .15, rhy: .15, fmix: .10, disc: .10 },
     BENCH: {
-        nano:  { max: 1e4, good: 5.0, avg: 3.0, label: 'Nano (<10k)' },
+        nano: { max: 1e4, good: 5.0, avg: 3.0, label: 'Nano (<10k)' },
         micro: { max: 1e5, good: 3.5, avg: 2.0, label: 'Micro (10k-100k)' },
-        mid:   { max: 1e6, good: 2.0, avg: 1.2, label: 'Mid-Tier (100k-1M)' },
+        mid: { max: 1e6, good: 2.0, avg: 1.2, label: 'Mid-Tier (100k-1M)' },
         macro: { max: 1e7, good: 1.2, avg: 0.7, label: 'Macro (1M-10M)' },
-        mega:  { max: Infinity, good: 0.8, avg: 0.4, label: 'Mega (10M+)' }
+        mega: { max: Infinity, good: 0.8, avg: 0.4, label: 'Mega (10M+)' }
     },
     CV_EX: 0.45, CV_PO: 1.35,
     CPL_ST: 3.0, CPL_GO: 1.5, CPL_WK: 0.6,
@@ -24,13 +24,13 @@ const CFG = {
     HT_ID: 8, CAP_MIN: 80,
     GRADES: [
         { min: 90, g: 'A+', t: 'Exceptional', c: '#10b981' },
-        { min: 80, g: 'A',  t: 'Excellent',   c: '#10b981' },
-        { min: 70, g: 'B+', t: 'Strong',      c: '#3b82f6' },
-        { min: 60, g: 'B',  t: 'Good',        c: '#3b82f6' },
-        { min: 50, g: 'C+', t: 'Average',     c: '#f59e0b' },
-        { min: 40, g: 'C',  t: 'Fair',        c: '#f59e0b' },
-        { min: 30, g: 'D+', t: 'Needs Work',  c: '#ef4444' },
-        { min: 0,  g: 'D',  t: 'Critical Attention', c: '#ef4444' }
+        { min: 80, g: 'A', t: 'Excellent', c: '#10b981' },
+        { min: 70, g: 'B+', t: 'Strong', c: '#3b82f6' },
+        { min: 60, g: 'B', t: 'Good', c: '#3b82f6' },
+        { min: 50, g: 'C+', t: 'Average', c: '#f59e0b' },
+        { min: 40, g: 'C', t: 'Fair', c: '#f59e0b' },
+        { min: 30, g: 'D+', t: 'Needs Work', c: '#ef4444' },
+        { min: 0, g: 'D', t: 'Critical Attention', c: '#ef4444' }
     ],
     STARS: [85, 70, 55, 40, 0]
 };
@@ -42,7 +42,7 @@ const ST = {
     _g(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
     _s(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { } },
     _d(k) { try { localStorage.removeItem(k); } catch { } },
-    
+
     // Scraper API Cache
     gc(u) {
         const item = this._g(CFG.CACHE_PFX + u.toLowerCase());
@@ -133,15 +133,169 @@ const ST = {
 };
 
 /* =================================================================
+   VERIFIED EMBEDDED DEMO DATASET (@nike)
+   Enables zero-latency instant offline demo for evaluators & previewers
+================================================================= */
+const DEMO_PROFILE_DATA = {
+  "username": "nike",
+  "fullName": "Nike",
+  "biography": "Just Do It.",
+  "followersCount": 291062802,
+  "followsCount": 266,
+  "postsCount": 1667,
+  "verified": true,
+  "profilePicUrlHD": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-19/551608484_18567162979020081_1135468084872726555_n.jpg?stp=dst-jpg_s320x320_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zOTkuYzIifQ&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=zm_mtmDkyKsQ7kNvwGk8QKy&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQMFa0afj4BQtqd_2iUHKmL2wkgiupC6fqfj5KWLuyg18Q&oe=6AC4143A&_nc_sid=8b3546",
+  "profilePicUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-19/551608484_18567162979020081_1135468084872726555_n.jpg?stp=dst-jpg_e0_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4zOTkuYzIifQ&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=zm_mtmDkyKsQ7kNvwGk8QKy&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQOKbXHstSMyG10IJAsTAqkQPREb47MbMhdA2P60YEWEeg&oe=6AC4143A&_nc_sid=8b3546",
+  "latestPosts": [
+    {
+      "id": "3997896311329255239",
+      "type": "Sidecar",
+      "caption": "@lalalalisa_m has landed. And she’s wearing the newest Moon Shoe.\n\nFirst prototyped in 1971 for speed on the track, now the Moon Shoe is designed for life in orbit.\n\nLaunching globally on 10.1",
+      "hashtags": [],
+      "likesCount": 149572,
+      "commentsCount": 1530,
+      "timestamp": "2026-09-30T22:13:20.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/829246653_18649795843014549_5501261660031061053_n.jpg?stp=dst-jpg_e35_p1080x1080_sh2.08_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=1&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=aWyR0x3TyvUQ7kNvwEE81la&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzk5Nzg5NDEwNjYwMjUzMTYyMA%3D%3D.3-ccb7-5&oh=00_AQNMg-Etxn_hIYpbeXxoOhjcVtM0rxTesQgfdbkpkGG0og&oe=6AC3FD10&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/Dd7YYNtn-9H/"
+    },
+    {
+      "id": "3991849403537918302",
+      "type": "Video",
+      "caption": "*Just a normal day for @caitlinclark22.\n\nWake up. Eat cereal. Lace up the Caitlin 1. Sell out arenas. Repeat.",
+      "hashtags": [],
+      "likesCount": 68211,
+      "commentsCount": 1082,
+      "timestamp": "2026-09-22T14:00:04.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/809201733_18666457525020081_2045154896762681305_n.jpg?stp=dst-jpg_e15_fr_p1080x1080_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=vA33M9LCKh8Q7kNvwHPhQdY&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQP3nEtI-T4D1HoIVq4O_LI5gbDxLjKDVDcXucrl875Riw&oe=6AC4033B&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/Ddl5eH-u4le/"
+    },
+    {
+      "id": "3989102691637366197",
+      "type": "Sidecar",
+      "caption": "Nike Atelier for Sha’Carri Richardson reflects the beauty of London after rainfall through luminous details, weathered textures, and sculptural silhouettes defined by strength and movement.\n\nThe bespoke look debuts on the red carpet at @athlos A26 in London. \n\nBuilt to push beyond convention, the Nike FlyWeb bra uses computational design to engineer fit and support down to the millimeter. Precision-made for an athlete redefining power on and off the track.\n\nThe Nike Atelier Vomero Premium takes a performance silhouette into new territory, embellished with hand-set Swarovski® Crystals shimmering like water droplets above reflective Air Zoom units.\n\n“You don’t have to choose one version of yourself. Every side of you can be powerful.”\n\nSha’Carri Richardson\n\nLight and movement shape every detail of the Nike Atelier jacket, with hand-set Swarovski® Crystals that catch the light like raindrops across the reflective outer layer.\n\nMade in Japan from premium crackled leather, the Nike Atelier Duffel Mini is accessorized with oversized custom charms that celebrate Sha’Carri’s connection to the track.\n\nNike Atelier. One of One.",
+      "hashtags": [],
+      "likesCount": 62087,
+      "commentsCount": 1312,
+      "timestamp": "2026-09-18T19:01:59.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/796460834_18665219536020081_4779922114140616445_n.jpg?stp=dst-jpg_e15_fr_p1080x1080_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=wzJXvuBL6dcQ7kNvwHBrmcd&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzk4OTEwMTE1MDA0NDczMzg3MA%3D%3D.3-ccb7-5&oh=00_AQNUOiKOnRUOL0nrNC7BptpiA3wBxx6-DFT3nlI6wF_eVQ&oe=6AC3F77B&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DdcI8NLmY21/"
+    },
+    {
+      "id": "3984877986863034700",
+      "type": "Image",
+      "caption": "Respectfully brutal. @bokrugby tough out a series only rugby’s greatest can produce.",
+      "hashtags": [],
+      "likesCount": 111858,
+      "commentsCount": 934,
+      "timestamp": "2026-09-12T23:09:11.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/808535567_18663415465020081_8300401525546067823_n.jpg?stp=dst-jpg_e35_p1080x1080_sh2.08_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=oTfvaB7Jw-wQ7kNvwF0Wg2Y&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzk4NDg3Nzk4Njg2MzAzNDcwMA%3D%3D.3-ccb7-5&oh=00_AQNiEkuPvlmaa6ErrK0ggkPNe4yxiwUaIHVcccxjaHjPlw&oe=6AC41595&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DdNIWqQPrFM/"
+    },
+    {
+      "id": "3984692633858210943",
+      "type": "Image",
+      "caption": "New York, Paris, Melbourne, and London have one thing in common. @nielsvink goes four for four on the year, securing the calendar year Grand Slam, by winning major titles in every corner of the globe.",
+      "hashtags": [],
+      "likesCount": 65569,
+      "commentsCount": 266,
+      "timestamp": "2026-09-12T17:01:28.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/806299551_18663322408020081_1997829106507125055_n.jpg?stp=dst-jpg_e35_p1080x1080_sh2.08_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=o4-fJBhw2VoQ7kNvwHliVAw&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzk4NDY5MjYzMzg1ODIxMDk0Mw%3D%3D.3-ccb7-5&oh=00_AQPseQ4S4o1DkiTOhSBndNI5_T3NLGhL-DQCViqBj1yrPw&oe=6AC3FFCE&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DdMeNa0O_x_/"
+    },
+    {
+      "id": "3977354183208478944",
+      "type": "Sidecar",
+      "caption": "No moment is too small to win.\n\nGrab the Sabrina 4 “The Switch” launching 9.5",
+      "hashtags": [],
+      "likesCount": 47480,
+      "commentsCount": 625,
+      "timestamp": "2026-09-02T13:59:48.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/791144760_18627521548035900_8030782657832792891_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=100&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=q652MzlXxRMQ7kNvwFCY73f&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQM4OqMSICfK-y5j4JA52hp3zOfxK8QC5eKMyoPtOC5dYg&oe=6AC40ACA&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DcyZo6EDijg/"
+    },
+    {
+      "id": "3976711603135381072",
+      "type": "Sidecar",
+      "caption": "These games mean more than just the standings. \n\nThe 2026 Nike x NFL Rivalries Collection. Built from competition and inspired by communities that make up the AFC South and NFC North. \n\nAvailable now.",
+      "hashtags": [],
+      "likesCount": 34693,
+      "commentsCount": 331,
+      "timestamp": "2026-09-01T16:43:06.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/793028537_18659928706020081_2345019189057705402_n.jpg?stp=dst-jpg_e35_p1080x1080_sh2.08_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=J7DlVb289kYQ7kNvwGotZ_M&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzk3NjcxMDAwMDUwMjk2NjkzMw%3D%3D.3-ccb7-5&oh=00_AQOpRsyJcteQQGYE1uet-9vyfI3HkcXZZXlTkPOupAHDAg&oe=6AC41479&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DcwHiIvDv5Q/"
+    },
+    {
+      "id": "3975901976486041392",
+      "type": "Video",
+      "caption": "If you’re going to play, play with fire.\n\n@carlitosalcarazz is back and coming in hot.",
+      "hashtags": [],
+      "likesCount": 368560,
+      "commentsCount": 6028,
+      "timestamp": "2026-08-31T13:56:44.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/791906938_18659541199020081_1978858658127689682_n.jpg?stp=dst-jpg_e15_fr_p1080x1080_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=ZLPEZ38wyBcQ7kNvwGO30O7&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQMx06jg3l0z3Dj5VyCb3PPjqksZR1amvgv2kgCFbJglzw&oe=6AC41F33&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DctPchKOVcw/"
+    },
+    {
+      "id": "3973168148123211095",
+      "type": "Video",
+      "caption": "New record just dropped.\n\nThe 100M hurdles World Record belongs to @masai_russell. And it’s flying off the shelves.",
+      "hashtags": [],
+      "likesCount": 28136,
+      "commentsCount": 674,
+      "timestamp": "2026-08-27T19:24:11.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/788562814_18658305418020081_8049223232898323984_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=Ye9a6GzkaP0Q7kNvwEPDQMq&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQPGlTkiCeoqU7x58WBqPaO9GOF1KQRLf21mH4sX9c3dtg&oe=6AC4171B&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/Dcjh2FFx9VX/"
+    },
+    {
+      "id": "3969188148291564527",
+      "type": "Sidecar",
+      "caption": "The most powerful muscle is the one above your shoulders. \n\n@bokrugby play a game they keep reinventing. \n\nFour tests. Everything on the line.",
+      "hashtags": [],
+      "likesCount": 93095,
+      "commentsCount": 492,
+      "timestamp": "2026-08-22T07:35:20.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/784252020_18656598970020081_4373176743203571146_n.jpg?stp=dst-jpg_e35_p1080x1080_sh2.08_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=mvbig4a5UNUQ7kNvwEfLZer&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&ig_cache_key=Mzk2OTE4MzYyNDc3OTQ2OTA4NQ%3D%3D.3-ccb7-5&oh=00_AQNkd61pR-PSs11NIrkN4OTMEGjCOroK2T39Y4TW8Y0CPA&oe=6AC41290&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DcVY5dZm_Pv/"
+    },
+    {
+      "id": "3965098051206886784",
+      "type": "Video",
+      "caption": "Just look up. \n\nThe All-Time Leading Scorer’s number 3 is headed to the rafters. Diana Taurasi, forever part of Phoenix Mercury history.",
+      "hashtags": [],
+      "likesCount": 76387,
+      "commentsCount": 1033,
+      "timestamp": "2026-08-16T16:09:43.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/773820927_18654615157020081_5228882958429413387_n.jpg?stp=dst-jpg_e15_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=wSl5Bbke-xUQ7kNvwHKo_AA&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQNl7hNfd8in5TEQD4nia349jYpze5pvQ_F2WFiRgEQ7-g&oe=6AC3FF4B&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/DcG26tpx7WA/"
+    },
+    {
+      "id": "3961499929595472898",
+      "type": "Video",
+      "caption": "Don’t Sleep on Ja. This is your wakeup call.\n\nJa 4 ‘Nightmare’ arrives on 8.13.",
+      "hashtags": [],
+      "likesCount": 53138,
+      "commentsCount": 679,
+      "timestamp": "2026-08-11T17:00:58.000Z",
+      "displayUrl": "https://instagram.fcen2-1.fna.fbcdn.net/v/t51.82787-15/772101971_18652763158020081_7353952094575095987_n.jpg?stp=dst-jpg_e15_fr_p1080x1080_tt6&_nc_ht=instagram.fcen2-1.fna.fbcdn.net&_nc_cat=109&_nc_oc=Q6cZ2gE8J1PlhLG37aVHCieAWFidMsVsOSs2UGXdyPbl746RNcNR-NR5DhoG0bIAvGpbVTo&_nc_ohc=taipayzWV74Q7kNvwFbBHoq&_nc_gid=7oyEX3GwMaIyQ37nyA5x0Q&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AQMoAWasEyzafdEM3vGhCyaC3kYj5gnjs5uv2lFSqLfH0Q&oe=6AC41252&_nc_sid=8b3546",
+      "url": "https://www.instagram.com/p/Db6EzJxRewC/"
+    }
+  ]
+};
+
+/* =================================================================
    API PROXY CLIENT
 ================================================================= */
 const API = {
     getBaseUrl() {
         if (window.BACKEND_API_URL) return window.BACKEND_API_URL;
-        if (window.location.protocol === 'file:' || (window.location.port !== '5000' && window.location.hostname === 'localhost')) {
-            return 'http://localhost:5000';
+        // If loaded directly from backend on port 5000:
+        if (window.location.port === '5000') return '';
+        // If running in production (e.g. *.vercel.app, *.render.com, custom domain):
+        if (window.location.hostname && !['localhost', '127.0.0.1', '0.0.0.0', ''].includes(window.location.hostname)) {
+            return '';
         }
-        return '';
+        // Local dev (file:///, Live Server 127.0.0.1:5500, localhost:3000, etc.):
+        return 'http://localhost:5000';
     },
     fetch(usernames, resultsLimit, forceRefresh) {
         const cached = {};
@@ -198,7 +352,7 @@ const MX = {
         const fol = data.followersCount || 0;
         const follows = data.followsCount || 0;
         const allPosts = data.latestPosts || [];
-        
+
         // Filter out posts with hidden/negative likes
         const validPosts = allPosts.filter(p => p.likesCount != null && p.likesCount >= 0);
         const hidCount = allPosts.length - validPosts.length;
@@ -214,14 +368,14 @@ const MX = {
         const lk = validPosts.map(p => p.likesCount || 0);
         const cm = validPosts.map(p => p.commentsCount || 0);
         const eng = validPosts.map(p => (p.likesCount || 0) + (p.commentsCount || 0));
-        
+
         // Per-post engagement rate
         const era = fol > 0 ? eng.map(e => (e / fol) * 100) : [];
         const aL = this._avg(lk);
         const mL = this._med(lk);
         const maxL = Math.max(...lk, 0);
         const minL = Math.min(...lk, 0);
-        
+
         const aC = this._avg(cm);
         const mC = this._med(cm);
         const tL = lk.reduce((s, v) => s + v, 0);
@@ -262,12 +416,12 @@ const MX = {
         // Timing Matrix: Day of Week & Time Slot Breakdown
         const dowNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const dowStats = dowNames.map(name => ({ day: name, count: 0, likesSum: 0, cmtsSum: 0, erSum: 0, avgER: 0 }));
-        
+
         const slotStats = {
-            morning:   { label: 'Morning (6am-12pm)', count: 0, engSum: 0, avgER: 0, icon: 'bi-sunrise' },
+            morning: { label: 'Morning (6am-12pm)', count: 0, engSum: 0, avgER: 0, icon: 'bi-sunrise' },
             afternoon: { label: 'Afternoon (12pm-5pm)', count: 0, engSum: 0, avgER: 0, icon: 'bi-sun' },
-            evening:   { label: 'Evening (5pm-9pm)', count: 0, engSum: 0, avgER: 0, icon: 'bi-sunset' },
-            night:     { label: 'Night (9pm-6am)', count: 0, engSum: 0, avgER: 0, icon: 'bi-moon' }
+            evening: { label: 'Evening (5pm-9pm)', count: 0, engSum: 0, avgER: 0, icon: 'bi-sunset' },
+            night: { label: 'Night (9pm-6am)', count: 0, engSum: 0, avgER: 0, icon: 'bi-moon' }
         };
 
         validPosts.forEach((p, idx) => {
@@ -275,7 +429,7 @@ const MX = {
             if (!t) return;
             const d = new Date(t);
             if (isNaN(d)) return;
-            
+
             const dow = d.getDay();
             const postER = era[idx] || 0;
             const postLk = p.likesCount || 0;
@@ -457,7 +611,7 @@ const SC = {
             if (m.ppw < CFG.PPW_MIN) rScore = this._scale(m.ppw, 0, CFG.PPW_MIN) * 0.5;
             else if (m.ppw <= CFG.PPW_HI) rScore = this._scale(m.ppw, CFG.PPW_MIN, CFG.PPW_LO) * 0.5 + 50;
             else rScore = 100 - this._scale(m.ppw, CFG.PPW_HI, CFG.PPW_HI * 3) * 0.5;
-            
+
             C.rhy = {
                 s: Math.max(0, Math.min(100, rScore)),
                 l: 'Publishing Rhythm',
@@ -502,7 +656,7 @@ const SC = {
 
         const grade = CFG.GRADES.find(g => ov >= g.min) || CFG.GRADES[CFG.GRADES.length - 1];
         const conf = m.sz < 8 ? ['Low', 'cfl'] : m.sz <= 20 ? ['Medium', 'cfm'] : ['High', 'cfh'];
-        
+
         let stars = 0;
         CFG.STARS.forEach((thresh, idx) => {
             if (ov >= thresh && !stars) stars = 5 - idx;
@@ -841,6 +995,18 @@ let forceRefreshActive = false;
 /* =================================================================
    RENDER PIPELINE
 ================================================================= */
+
+function loadDemoProfile() {
+    hideAlert();
+    renderProfile(DEMO_PROFILE_DATA);
+    $('#demoBanner').removeClass('d-none');
+    $('#acIn').val('nike');
+    ST.setPref('lastIn', 'nike');
+    ST.setPref('lastAnalysedUser', 'nike');
+    const el = document.getElementById('resWrap');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
 function renderProfile(data) {
     currentData = data;
     const name = data.fullName || data.name || data.username || 'User';
@@ -888,6 +1054,11 @@ function renderProfile(data) {
             }
         }
     }, 80);
+
+    if (data.username && data.username.toLowerCase() !== 'nike') {
+        $('#demoBanner').addClass('d-none');
+    }
+    ST.setPref('lastAnalysedUser', data.username || '');
 }
 
 /* =================================================================
@@ -929,7 +1100,7 @@ function renderOverviewTab(m, s, d) {
         $('#sTier').text(s.t).css({ background: s.c + '25', color: s.c, border: '1px solid ' + s.c + '50' });
         $('#sConf').html(`<span class="conf ${s.conf[1]}"><i class="bi bi-shield-check"></i> ${s.conf[0]} Confidence</span>`);
         $('#sBase').text(`Evaluated over last ${m.sz} posts`);
-        
+
         // Pillars progress bars
         $('#cBars').html(Object.values(s.C).map(c => `
             <div class="cb-w">
@@ -1551,18 +1722,18 @@ function renderCompareArena(dA, dB) {
         </thead>
         <tbody>
             ${rows.map(r => {
-                let win = '&mdash;', dif = '&mdash;', wc = '';
-                if (r.ar !== null && r.br !== null && r.ar !== -1 && r.br !== -1) {
-                    if (r.ar > r.br) { win = 'A'; wc = '#dc2743'; }
-                    else if (r.br > r.ar) { win = 'B'; wc = '#3b82f6'; }
-                    else win = 'Tie';
-                    
-                    if (typeof r.ar === 'number' && typeof r.br === 'number' && r.br !== 0) {
-                        const pct = (((r.ar - r.br) / Math.abs(r.br)) * 100).toFixed(1);
-                        dif = (pct > 0 ? '+' : '') + pct + '%';
-                    }
-                }
-                return `
+        let win = '&mdash;', dif = '&mdash;', wc = '';
+        if (r.ar !== null && r.br !== null && r.ar !== -1 && r.br !== -1) {
+            if (r.ar > r.br) { win = 'A'; wc = '#dc2743'; }
+            else if (r.br > r.ar) { win = 'B'; wc = '#3b82f6'; }
+            else win = 'Tie';
+
+            if (typeof r.ar === 'number' && typeof r.br === 'number' && r.br !== 0) {
+                const pct = (((r.ar - r.br) / Math.abs(r.br)) * 100).toFixed(1);
+                dif = (pct > 0 ? '+' : '') + pct + '%';
+            }
+        }
+        return `
                     <tr>
                         <td class="fw7" style="font-size:12px">${esc(r.l)}</td>
                         <td style="font-size:12px">${r.a}</td>
@@ -1571,7 +1742,7 @@ function renderCompareArena(dA, dB) {
                         <td style="font-size:11px;color:var(--tm)">${dif}</td>
                     </tr>
                 `;
-            }).join('')}
+    }).join('')}
         </tbody>
     `);
 
@@ -1736,7 +1907,11 @@ async function runSingleAnalysis() {
         renderProfile(profileData);
 
     } catch (err) {
-        showAlert('Error: ' + (err.responseJSON?.error?.message || err.statusText || 'Failed to fetch Instagram profile data.'));
+        const msg = err.responseJSON?.error?.message || err.statusText || 'Failed to fetch Instagram profile data.';
+        showAlert(
+            '<strong>Scraper Notice:</strong> ' + esc(msg) + 
+            '<div class="mt-2"><button class="btn btn-sm btn-outline-danger py-0 px-2" onclick="loadDemoProfile()">Explore Verified @nike Demo Dashboard</button></div>'
+        );
     } finally {
         setButtonLoading('#srchBtn', false, '<i class="bi bi-lightning-charge-fill me-1"></i> Analyze Live');
     }
@@ -1843,12 +2018,12 @@ $(() => {
     // 2. Search & Compare Events
     $('#srchBtn').on('click', runSingleAnalysis);
     $('#acIn').on('keypress', e => { if (e.which === 13) runSingleAnalysis(); })
-             .on('input', function () { ST.setPref('lastIn', $(this).val()); });
+        .on('input', function () { ST.setPref('lastIn', $(this).val()); });
 
     $('#cmpBtn').on('click', runCompareAnalysis);
     $('#acInA, #acInB').on('keypress', e => { if (e.which === 13) runCompareAnalysis(); });
 
-    $('#cmpToggle, #cmpLabel').on('click', function(e) {
+    $('#cmpToggle, #cmpLabel').on('click', function (e) {
         if (e.target.tagName !== 'INPUT') {
             togCmp(!compareMode, true);
         }
@@ -1894,6 +2069,16 @@ $(() => {
 
         $('.tab-pane-content').addClass('d-none');
         $('#' + targetTab).removeClass('d-none');
+
+        // Force Chart.js to recalculate dimensions upon tab reveal
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            if (window.Chart && window.Chart.instances) {
+                Object.values(window.Chart.instances).forEach(c => {
+                    try { c.resize(); } catch(e) {}
+                });
+            }
+        }, 60);
     });
 
     $('#quickWatchlistBtn').on('click', function () {
@@ -1976,7 +2161,7 @@ $(() => {
         document.documentElement.setAttribute('data-theme', next);
         ST.setPref('theme', next);
         $('#themeIco').attr('class', next === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill');
-        
+
         // Re-render charts with updated theme colors
         if (currentMetrics && currentScore) {
             renderOverviewTab(currentMetrics, currentScore, currentData);

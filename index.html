@@ -39,6 +39,10 @@
             <div class="d-flex align-items-center gap-3">
                 <span class="live-b d-none d-sm-inline-flex"><span class="dot"></span> Live Scraper Active</span>
                 
+                <button id="navDemoBtn" class="btn btn-sm btn-glass btn-ia" title="Load Verified Demo Profile">
+                    <i class="bi bi-stars text-primary"></i>
+                    <span class="d-none d-md-inline">Explore Demo (@nike)</span>
+                </button>
                 <button id="quickWatchlistBtn" class="btn btn-sm btn-glass btn-ia" title="Saved Watchlist">
                     <i class="bi bi-bookmark-star-fill text-warning"></i>
                     <span class="d-none d-md-inline">Watchlist</span>
@@ -175,6 +179,7 @@
                     Type any public Instagram username above (or click one of the suggestions) and hit <strong>Analyze Live</strong> to generate in-depth AI insights.
                 </div>
                 <div class="mt-4 d-flex justify-content-center gap-2 flex-wrap">
+                    <button class="btn btn-sm btn-primary btn-ia" id="loadDemoBtn"><i class="bi bi-stars me-1"></i> Explore Demo Dashboard (@nike)</button>
                     <button class="btn btn-sm btn-glass btn-ia qc" data-u="cristiano">Test @cristiano</button>
                     <button class="btn btn-sm btn-glass btn-ia qc" data-u="nike">Test @nike</button>
                     <button class="btn btn-sm btn-glass btn-ia qc" data-u="nasa">Test @nasa</button>
@@ -184,6 +189,17 @@
 
         <!-- MAIN RESULTS CONTAINER -->
         <div id="resWrap" class="d-none">
+            <!-- DEMO BANNER -->
+            <div id="demoBanner" class="alert alert-info d-flex align-items-center justify-content-between p-3 mb-4 d-none" style="border-radius:14px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:var(--tx)">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-stars text-primary fs-5"></i>
+                    <div>
+                        <strong>Verified Demo Mode Active (@nike):</strong>
+                        <span class="ms-1" style="color:var(--tm)">Displaying real profile data & 12 sampled posts. Enter any public Instagram handle above to fetch live data!</span>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-primary py-1 px-3" style="font-size:12px;border-radius:8px" onclick="$('#demoBanner').addClass('d-none')">Dismiss</button>
+            </div>
             
             <!-- PROFILE EXECUTIVE HEADER -->
             <div class="ca ca-hero p-4 mb-4">

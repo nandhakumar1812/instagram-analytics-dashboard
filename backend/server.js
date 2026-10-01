@@ -11,12 +11,17 @@ const PORT = process.env.PORT || 5000;
 const APIFY_ACTOR = process.env.APIFY_ACTOR || 'apify~instagram-profile-scraper';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 app.use(express.json());
 
-// Serve static frontend files if frontend directory exists
+// Serve static frontend files from both frontend/ and root directories
 const frontendPath = path.join(__dirname, '..', 'frontend');
+const rootPath = path.join(__dirname, '..');
 app.use(express.static(frontendPath));
+app.use(express.static(rootPath));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

@@ -64,22 +64,27 @@ Open `http://localhost:5000` in your web browser. You can enter any public Insta
 
 ## 🌐 Deployment Guide
 
-### Option 1: Unified Full-Stack Deployment (Recommended on Render / Railway)
-Because `backend/server.js` statically serves `frontend/index.html`, you can deploy the entire app as a single web service.
+### Option 1: Vercel Deployment (Recommended — Instant & Zero Sleep)
+The project includes `vercel.json` and a serverless entrypoint in `api/index.js`. Vercel automatically deploys the frontend and the Express API in a single project.
 
-#### Deploy on [Render.com](https://render.com/):
-1. Push your clean code to your GitHub repository.
-2. Log into Render and click **New +** → **Web Service**.
-3. Select your GitHub repository (`instagram-analytics-dashboard`).
-4. Configure the settings:
-   - **Root Directory**: `backend`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm start`
-5. Under **Environment Variables**, add:
+1. Go to **[vercel.com](https://vercel.com/)** and sign in with GitHub.
+2. Click **Add New…** → **Project**.
+3. Select your repository: **`nandhakumar1812/instagram-analytics-dashboard`**.
+4. Leave all build settings at default (root directory `/`).
+5. Under **Environment Variables**:
    - **Key**: `APIFY_API_TOKEN`
    - **Value**: `[Your Real Apify API Token]`
-6. Click **Deploy Web Service**.
-7. Render gives you a live HTTPS URL (e.g. `https://your-dashboard.onrender.com`). Everything works out of the box!
+6. Click **Deploy**.
+7. Vercel provides a live URL (e.g., `https://instagram-analytics-dashboard.vercel.app`) with zero cold starts!
+
+---
+
+### Option 2: Render.com / Railway Deployment
+1. Go to **[Render.com](https://render.com/)** and click **New +** → **Web Service**.
+2. Select your repository: `instagram-analytics-dashboard`.
+3. Set **Root Directory** to `backend`.
+4. Add environment variable `APIFY_API_TOKEN`.
+5. Click **Deploy Web Service**.
 
 ---
 

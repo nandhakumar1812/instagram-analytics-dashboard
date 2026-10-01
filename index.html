@@ -8,16 +8,18 @@
     <meta name="description"
         content="InstaAnalytics AI - Ultra-modern Instagram Intelligence & Analytics Platform with deterministic AI scoring, timing heatmap, hashtag matrix, SWOT analysis, and media studio.">
     <title>InstaAnalytics AI — Instagram Intelligence Platform</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <!-- Framework & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    
+
     <!-- Custom Design System -->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -28,17 +30,23 @@
     <nav class="nav-c np">
         <div class="container d-flex align-items-center justify-content-between">
             <a href="#" class="d-flex align-items-center gap-2 text-decoration-none">
-                <span style="font-size:26px;background:var(--ig);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">
+                <span
+                    style="font-size:28px;background:var(--ig);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:flex;align-items:center;">
                     <i class="bi bi-instagram"></i>
                 </span>
-                <span class="nav-brand text-white">
-                    InstaAnalytics <span class="brand-badge">AI 2.0</span>
-                </span>
+                <div class="d-flex flex-column justify-content-center">
+                    <span class="nav-brand" style="line-height:1.15;letter-spacing:-0.5px;">
+                        Insta Lens
+                    </span>
+                    <span class="brand-tagline" style="font-size:10px;font-weight:500;letter-spacing:0.4px;color:var(--tm);line-height:1.2;margin-top:2px;">
+                        Intelligence Behind Every Insight.
+                    </span>
+                </div>
             </a>
-            
+
             <div class="d-flex align-items-center gap-3">
                 <span class="live-b d-none d-sm-inline-flex"><span class="dot"></span> Live Scraper Active</span>
-                
+
                 <button id="navDemoBtn" class="btn btn-sm btn-glass btn-ia" title="Load Verified Demo Profile">
                     <i class="bi bi-stars text-primary"></i>
                     <span class="d-none d-md-inline">Explore Demo (@nike)</span>
@@ -48,7 +56,7 @@
                     <span class="d-none d-md-inline">Watchlist</span>
                     <span id="navWatchCount" class="badge rounded-pill bg-danger" style="font-size:10px">0</span>
                 </button>
-                
+
                 <button id="themeBtn" class="btn btn-sm btn-glass" title="Toggle Theme">
                     <i class="bi bi-sun-fill" id="themeIco"></i>
                 </button>
@@ -57,7 +65,7 @@
     </nav>
 
     <div class="container py-4">
-        
+
         <!-- SEARCH & INPUT COMMAND CENTER -->
         <div class="search-container np">
             <!-- Top Controls Bar -->
@@ -68,21 +76,23 @@
                     </div>
                     <h5 class="fw8 mb-0" style="letter-spacing:-0.3px;">Instagram Profile Intelligence</h5>
                 </div>
-                
+
                 <div class="d-flex align-items-center gap-3 flex-wrap search-controls-wrap">
-                    <div class="cmp-toggle-wrapper" id="cmpToggleWrap" role="button" title="Toggle Side-by-Side Compare">
+                    <div class="cmp-toggle-wrapper" id="cmpToggleWrap" role="button"
+                        title="Toggle Side-by-Side Compare">
                         <span class="cmp-toggle-track" id="cmpToggle">
                             <span class="cmp-toggle-thumb"></span>
                         </span>
                         <span class="cmp-toggle-label">Compare Mode</span>
                     </div>
-                    
-                    <select id="limSel" class="form-select form-select-sm input-glass" style="min-width:145px;width:auto;font-size:13px;font-weight:600;padding:6px 12px;cursor:pointer;">
+
+                    <select id="limSel" class="form-select form-select-sm input-glass"
+                        style="min-width:145px;width:auto;font-size:13px;font-weight:600;padding:6px 12px;cursor:pointer;">
                         <option value="12">12 posts sample</option>
                         <option value="24">24 posts sample</option>
                         <option value="36">36 posts sample</option>
                     </select>
-                    
+
                     <button id="forceBtn" class="btn btn-sm btn-glass btn-ia" title="Bypass cache and force scrape">
                         <i class="bi bi-arrow-repeat"></i> Force Refresh
                     </button>
@@ -118,7 +128,8 @@
                         </label>
                         <div class="search-unified-group">
                             <span class="search-prefix-icon"><i class="bi bi-at"></i></span>
-                            <input type="text" id="acInA" class="search-unified-input" placeholder="@username A" autocomplete="off">
+                            <input type="text" id="acInA" class="search-unified-input" placeholder="@username A"
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -127,7 +138,8 @@
                         </label>
                         <div class="search-unified-group">
                             <span class="search-prefix-icon"><i class="bi bi-at"></i></span>
-                            <input type="text" id="acInB" class="search-unified-input" placeholder="@username B" autocomplete="off">
+                            <input type="text" id="acInB" class="search-unified-input" placeholder="@username B"
+                                autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
@@ -140,7 +152,8 @@
 
             <!-- Quick Profile Chips Row -->
             <div class="d-flex align-items-center gap-2 mt-4 flex-wrap suggestions-wrap">
-                <span class="suggestions-label" style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">SUGGESTIONS:</span>
+                <span class="suggestions-label"
+                    style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">SUGGESTIONS:</span>
                 <span class="qc" data-u="cristiano"><i class="bi bi-star-fill text-warning"></i> @cristiano</span>
                 <span class="qc" data-u="leomessi"><i class="bi bi-star-fill text-warning"></i> @leomessi</span>
                 <span class="qc" data-u="selenagomez">@selenagomez</span>
@@ -153,10 +166,13 @@
             <div id="histWrap" class="hist-section d-none">
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <span class="history-label" style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">RECENT SEARCHES:</span>
+                        <span class="history-label"
+                            style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">RECENT
+                            SEARCHES:</span>
                         <div id="histChips" class="d-flex gap-2 flex-wrap align-items-center"></div>
                     </div>
-                    <button id="clrHistBtn" class="btn btn-sm btn-link text-muted text-decoration-none" style="font-size:11px" title="Clear history">
+                    <button id="clrHistBtn" class="btn btn-sm btn-link text-muted text-decoration-none"
+                        style="font-size:11px" title="Clear history">
                         <i class="bi bi-trash3 me-1"></i> Clear
                     </button>
                 </div>
@@ -164,7 +180,8 @@
         </div>
 
         <!-- ALERT BOX -->
-        <div id="alertBox" class="alert alert-danger d-none ria mb-4" role="alert" style="font-size:13px;border-radius:12px"></div>
+        <div id="alertBox" class="alert alert-danger d-none ria mb-4" role="alert"
+            style="font-size:13px;border-radius:12px"></div>
 
         <!-- EMPTY STATE -->
         <div id="emptyState" class="ca p-5">
@@ -172,10 +189,12 @@
                 <span class="es-i"><i class="bi bi-graph-up-arrow"></i></span>
                 <div class="es-t">No Instagram Profile Analysed Yet</div>
                 <div class="es-s">
-                    Type any public Instagram username above (or click one of the suggestions) and hit <strong>Analyze Live</strong> to generate in-depth AI insights.
+                    Type any public Instagram username above (or click one of the suggestions) and hit <strong>Analyze
+                        Live</strong> to generate in-depth AI insights.
                 </div>
                 <div class="mt-4 d-flex justify-content-center gap-2 flex-wrap">
-                    <button class="btn btn-sm btn-primary btn-ia" id="loadDemoBtn"><i class="bi bi-stars me-1"></i> Explore Demo Dashboard (@nike)</button>
+                    <button class="btn btn-sm btn-primary btn-ia" id="loadDemoBtn"><i class="bi bi-stars me-1"></i>
+                        Explore Demo Dashboard (@nike)</button>
                     <button class="btn btn-sm btn-glass btn-ia qc" data-u="cristiano">Test @cristiano</button>
                     <button class="btn btn-sm btn-glass btn-ia qc" data-u="nike">Test @nike</button>
                     <button class="btn btn-sm btn-glass btn-ia qc" data-u="nasa">Test @nasa</button>
@@ -186,17 +205,22 @@
         <!-- MAIN RESULTS CONTAINER -->
         <div id="resWrap" class="d-none">
             <!-- DEMO BANNER -->
-            <div id="demoBanner" class="alert alert-info d-flex align-items-center justify-content-between p-3 mb-4 d-none" style="border-radius:14px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:var(--tx)">
+            <div id="demoBanner"
+                class="alert alert-info d-flex align-items-center justify-content-between p-3 mb-4 d-none"
+                style="border-radius:14px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.3);color:var(--tx)">
                 <div class="d-flex align-items-center gap-2">
                     <i class="bi bi-stars text-primary fs-5"></i>
                     <div>
                         <strong>Verified Demo Mode Active (@nike):</strong>
-                        <span class="ms-1" style="color:var(--tm)">Displaying real profile data & 12 sampled posts. Enter any public Instagram handle above to fetch live data!</span>
+                        <span class="ms-1" style="color:var(--tm)">Displaying real profile data & 12 sampled posts.
+                            Enter any public Instagram handle above to fetch live data!</span>
                     </div>
                 </div>
-                <button type="button" class="btn btn-sm btn-outline-primary py-1 px-3" style="font-size:12px;border-radius:8px" onclick="$('#demoBanner').addClass('d-none')">Dismiss</button>
+                <button type="button" class="btn btn-sm btn-outline-primary py-1 px-3"
+                    style="font-size:12px;border-radius:8px"
+                    onclick="$('#demoBanner').addClass('d-none')">Dismiss</button>
             </div>
-            
+
             <!-- PROFILE EXECUTIVE HEADER -->
             <div class="ca ca-hero p-4 mb-4">
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-4">
@@ -205,20 +229,24 @@
                         <div>
                             <div class="d-flex align-items-center gap-2 flex-wrap">
                                 <h3 class="fw8 mb-0 profile-title" id="uName">--</h3>
-                                <i id="verBadge" class="bi bi-patch-check-fill text-primary fs-5 d-none" title="Verified Account"></i>
-                                <span class="badge bg-dark text-light border border-secondary small ms-1" id="uCat">Public Profile</span>
+                                <i id="verBadge" class="bi bi-patch-check-fill text-primary fs-5 d-none"
+                                    title="Verified Account"></i>
+                                <span class="badge bg-dark text-light border border-secondary small ms-1"
+                                    id="uCat">Public Profile</span>
                             </div>
                             <div class="profile-handle mt-1" id="uHdl" style="font-size:15px;font-weight:600">@--</div>
-                            <p class="profile-bio small mt-2 mb-0" id="uBio" style="max-width:650px;line-height:1.6"></p>
+                            <p class="profile-bio small mt-2 mb-0" id="uBio" style="max-width:650px;line-height:1.6">
+                            </p>
                         </div>
                     </div>
-                    
+
                     <!-- Quick Action Buttons -->
                     <div class="d-flex gap-2 flex-wrap np">
                         <button id="bookmarkBtn" class="btn btn-glass btn-ia btn-sm" title="Save to Watchlist">
                             <i class="bi bi-bookmark-plus" id="bookmarkIco"></i> Watchlist
                         </button>
-                        <a id="extLink" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-glass btn-ia btn-sm">
+                        <a id="extLink" href="#" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-glass btn-ia btn-sm">
                             <i class="bi bi-box-arrow-up-right text-primary"></i> Instagram
                         </a>
                         <button id="cpyBtn" class="btn btn-glass btn-ia btn-sm">
@@ -272,8 +300,8 @@
                                 <div class="ring-w">
                                     <svg viewBox="0 0 140 140">
                                         <circle class="ring-t" cx="70" cy="70" r="60" />
-                                        <circle class="ring-f" id="rFill" cx="70" cy="70" r="60" stroke-dasharray="376.99"
-                                            stroke-dashoffset="376.99" stroke="url(#igG)" />
+                                        <circle class="ring-f" id="rFill" cx="70" cy="70" r="60"
+                                            stroke-dasharray="376.99" stroke-dashoffset="376.99" stroke="url(#igG)" />
                                         <defs>
                                             <linearGradient id="igG" x1="0%" y1="0%" x2="100%" y2="0%">
                                                 <stop offset="0%" stop-color="#f09433" />
@@ -287,11 +315,12 @@
                                         <div class="ring-g" id="sGrd">--</div>
                                     </div>
                                 </div>
-                                <div class="mt-2"><span id="sTier" class="badge rounded-pill" style="font-size:12px">--</span></div>
+                                <div class="mt-2"><span id="sTier" class="badge rounded-pill"
+                                        style="font-size:12px">--</span></div>
                                 <div class="mt-2" id="sConf"></div>
                                 <div class="mt-1" id="sBase" style="font-size:11px;color:var(--tm)"></div>
                             </div>
-                            
+
                             <hr class="dvd">
                             <div class="st"><i class="bi bi-sliders me-1"></i>Scoring Pillars</div>
                             <div id="cBars"></div>
@@ -322,7 +351,8 @@
                     <div class="col-12">
                         <div class="ca p-4">
                             <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
-                                <div class="st mb-0"><i class="bi bi-graph-up me-1"></i>Engagement Trajectory (Post-by-Post)</div>
+                                <div class="st mb-0"><i class="bi bi-graph-up me-1"></i>Engagement Trajectory
+                                    (Post-by-Post)</div>
                                 <div id="trendBadge"></div>
                             </div>
                             <div class="cbx" style="height:280px"><canvas id="barChart"></canvas></div>
@@ -341,14 +371,18 @@
                         <!-- Filters -->
                         <div class="d-flex gap-2 flex-wrap" id="mediaFilterGroup">
                             <button class="btn btn-sm btn-glass btn-ia active" data-filter="all">All Media</button>
-                            <button class="btn btn-sm btn-glass btn-ia" data-filter="video"><i class="bi bi-play-circle-fill text-danger"></i> Reels & Videos</button>
-                            <button class="btn btn-sm btn-glass btn-ia" data-filter="sidecar"><i class="bi bi-layers-fill text-purple"></i> Carousels</button>
-                            <button class="btn btn-sm btn-glass btn-ia" data-filter="image"><i class="bi bi-image text-primary"></i> Photos</button>
+                            <button class="btn btn-sm btn-glass btn-ia" data-filter="video"><i
+                                    class="bi bi-play-circle-fill text-danger"></i> Reels & Videos</button>
+                            <button class="btn btn-sm btn-glass btn-ia" data-filter="sidecar"><i
+                                    class="bi bi-layers-fill text-purple"></i> Carousels</button>
+                            <button class="btn btn-sm btn-glass btn-ia" data-filter="image"><i
+                                    class="bi bi-image text-primary"></i> Photos</button>
                         </div>
 
                         <!-- Sort & View Switcher -->
                         <div class="d-flex align-items-center gap-2 flex-wrap">
-                            <select id="mediaSortSel" class="form-select form-select-sm input-glass" style="width:160px">
+                            <select id="mediaSortSel" class="form-select form-select-sm input-glass"
+                                style="width:160px">
                                 <option value="er">Highest Eng Rate</option>
                                 <option value="likes">Most Likes</option>
                                 <option value="comments">Most Comments</option>
@@ -356,8 +390,10 @@
                             </select>
 
                             <div class="btn-group btn-group-sm" role="group">
-                                <button id="viewGridBtn" class="btn btn-glass active" title="Grid View"><i class="bi bi-grid-fill"></i></button>
-                                <button id="viewTableBtn" class="btn btn-glass" title="Table View"><i class="bi bi-table"></i></button>
+                                <button id="viewGridBtn" class="btn btn-glass active" title="Grid View"><i
+                                        class="bi bi-grid-fill"></i></button>
+                                <button id="viewTableBtn" class="btn btn-glass" title="Table View"><i
+                                        class="bi bi-table"></i></button>
                             </div>
                         </div>
                     </div>
@@ -408,10 +444,11 @@
                         <div class="col-lg-5">
                             <div class="st"><i class="bi bi-clock me-1"></i>Engagement by Time Slot</div>
                             <div id="timeSlotList"></div>
-                            
+
                             <hr class="dvd">
                             <div class="st"><i class="bi bi-speedometer me-1"></i>Publishing Cadence</div>
-                            <div class="p-3 rounded-3" style="background:var(--sf2);border:1px solid var(--bd)" id="cadenceBox"></div>
+                            <div class="p-3 rounded-3" style="background:var(--sf2);border:1px solid var(--bd)"
+                                id="cadenceBox"></div>
                         </div>
                     </div>
                 </div>
@@ -447,10 +484,12 @@
                         <!-- Hashtag Cloud & Semantic Insights -->
                         <div class="col-lg-5">
                             <div class="st"><i class="bi bi-cloud me-1"></i>Interactive Hashtag Cloud</div>
-                            <div class="ht-cloud p-3 rounded-3 mb-4" style="background:var(--sf2);border:1px solid var(--bd)" id="htCloud"></div>
+                            <div class="ht-cloud p-3 rounded-3 mb-4"
+                                style="background:var(--sf2);border:1px solid var(--bd)" id="htCloud"></div>
 
                             <div class="st"><i class="bi bi-chat-left-quote me-1"></i>Caption & CTA Intelligence</div>
-                            <div id="captionAnalyticsBox" class="p-3 rounded-3" style="background:var(--sf2);border:1px solid var(--bd)"></div>
+                            <div id="captionAnalyticsBox" class="p-3 rounded-3"
+                                style="background:var(--sf2);border:1px solid var(--bd)"></div>
                         </div>
                     </div>
                 </div>
@@ -463,7 +502,8 @@
                 <div class="ca p-4 mb-4">
                     <!-- Interactive Question Chips -->
                     <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
-                        <div class="st mb-0"><i class="bi bi-cpu me-1" style="color:var(--ac)"></i>Ask the Deterministic AI Analyst</div>
+                        <div class="st mb-0"><i class="bi bi-cpu me-1" style="color:var(--ac)"></i>Ask the Deterministic
+                            AI Analyst</div>
                         <div class="d-flex gap-2 flex-wrap" id="qChips">
                             <button class="qc" data-q="score">Why this score?</button>
                             <button class="qc" data-q="format">Best format?</button>
@@ -472,8 +512,10 @@
                             <button class="qc" data-q="bestpost">Top outlier post?</button>
                         </div>
                     </div>
-                    <div id="insHL" class="p-3 rias mb-3 bg-igs" style="font-size:14px;font-weight:600;line-height:1.6"></div>
-                    <div id="qaBox" class="p-3 rias mb-4 d-none" style="background:var(--sf2);border:1px solid var(--bd);font-size:13px"></div>
+                    <div id="insHL" class="p-3 rias mb-3 bg-igs" style="font-size:14px;font-weight:600;line-height:1.6">
+                    </div>
+                    <div id="qaBox" class="p-3 rias mb-4 d-none"
+                        style="background:var(--sf2);border:1px solid var(--bd);font-size:13px"></div>
 
                     <!-- 4-Quadrant SWOT Matrix -->
                     <div class="st mb-3"><i class="bi bi-grid me-1"></i>Automated Strategic SWOT Matrix</div>
@@ -483,7 +525,8 @@
                             <div id="strList"></div>
                         </div>
                         <div class="swot-box w">
-                            <div class="swot-title text-danger"><i class="bi bi-exclamation-triangle-fill"></i> Weaknesses</div>
+                            <div class="swot-title text-danger"><i class="bi bi-exclamation-triangle-fill"></i>
+                                Weaknesses</div>
                             <div id="wkList"></div>
                         </div>
                         <div class="swot-box o">
@@ -491,7 +534,8 @@
                             <div id="oppList"></div>
                         </div>
                         <div class="swot-box t">
-                            <div class="swot-title text-warning"><i class="bi bi-shield-slash-fill"></i> Threats & Risks</div>
+                            <div class="swot-title text-warning"><i class="bi bi-shield-slash-fill"></i> Threats & Risks
+                            </div>
                             <div id="threatList"></div>
                         </div>
                     </div>
@@ -503,7 +547,8 @@
                     <!-- Methodology Accordion -->
                     <div class="accordion ca mt-4" id="scAcc">
                         <div class="ah p-3" id="scAccH">
-                            <span class="fw7" style="font-size:13px"><i class="bi bi-calculator me-2"></i>Scoring Methodology & Benchmarks</span>
+                            <span class="fw7" style="font-size:13px"><i class="bi bi-calculator me-2"></i>Scoring
+                                Methodology & Benchmarks</span>
                             <i class="bi bi-chevron-down" id="scChev"></i>
                         </div>
                         <div class="ab p-3" id="scAccB">
@@ -522,8 +567,10 @@
                         <!-- Saved Watchlist Section -->
                         <div class="col-lg-7">
                             <div class="d-flex align-items-center justify-content-between mb-3">
-                                <div class="st mb-0"><i class="bi bi-bookmark-star-fill me-1 text-warning"></i>Saved Profiles Watchlist</div>
-                                <button id="clearWatchlistBtn" class="btn btn-sm btn-link text-muted text-decoration-none" style="font-size:11px">
+                                <div class="st mb-0"><i class="bi bi-bookmark-star-fill me-1 text-warning"></i>Saved
+                                    Profiles Watchlist</div>
+                                <button id="clearWatchlistBtn"
+                                    class="btn btn-sm btn-link text-muted text-decoration-none" style="font-size:11px">
                                     <i class="bi bi-trash3"></i> Clear All
                                 </button>
                             </div>
@@ -542,16 +589,19 @@
                                         <i class="bi bi-filetype-json text-primary"></i> Export Full JSON Dataset
                                     </button>
                                     <button id="dlCsvBtn2" class="btn btn-glass btn-ia">
-                                        <i class="bi bi-file-earmark-spreadsheet text-success"></i> Export Posts Table (CSV)
+                                        <i class="bi bi-file-earmark-spreadsheet text-success"></i> Export Posts Table
+                                        (CSV)
                                     </button>
                                     <button id="dlTxtBtn" class="btn btn-glass btn-ia">
-                                        <i class="bi bi-file-earmark-text text-warning"></i> Download Executive Brief (.txt)
+                                        <i class="bi bi-file-earmark-text text-warning"></i> Download Executive Brief
+                                        (.txt)
                                     </button>
                                 </div>
                             </div>
 
                             <div class="st"><i class="bi bi-database me-1"></i>Storage & Cache Health</div>
-                            <div class="p-3 rounded-3" style="background:var(--sf2);border:1px solid var(--bd)" id="cacheStatsBox"></div>
+                            <div class="p-3 rounded-3" style="background:var(--sf2);border:1px solid var(--bd)"
+                                id="cacheStatsBox"></div>
                         </div>
                     </div>
                 </div>
@@ -565,8 +615,10 @@
         <div id="cmpWrap" class="d-none">
             <div class="ca p-4 mb-4">
                 <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="fw8 mb-0"><i class="bi bi-intersect me-2" style="color:var(--ac)"></i>Head-to-Head Compare Arena</h5>
-                    <button class="btn btn-sm btn-glass btn-ia" onclick="togCmp(false, true)"><i class="bi bi-arrow-left"></i> Back to Single View</button>
+                    <h5 class="fw8 mb-0"><i class="bi bi-intersect me-2" style="color:var(--ac)"></i>Head-to-Head
+                        Compare Arena</h5>
+                    <button class="btn btn-sm btn-glass btn-ia" onclick="togCmp(false, true)"><i
+                            class="bi bi-arrow-left"></i> Back to Single View</button>
                 </div>
                 <div class="row g-3 mb-4">
                     <div class="col-md-6" id="profA"></div>
@@ -589,7 +641,9 @@
                 </div>
                 <div class="ca p-4 mb-4">
                     <div class="st"><i class="bi bi-table me-1"></i>Side-by-Side Metric Matrix</div>
-                    <div class="ti-wrap"><table class="ti" id="cmpTbl"></table></div>
+                    <div class="ti-wrap">
+                        <table class="ti" id="cmpTbl"></table>
+                    </div>
                 </div>
                 <div class="ca p-4">
                     <div class="st"><i class="bi bi-award me-1" style="color:var(--ye)"></i>AI Strategic Verdict</div>
@@ -606,7 +660,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title fw8" id="modalPostTitle">Post Analytics</h6>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4" id="modalPostBody"></div>
             </div>

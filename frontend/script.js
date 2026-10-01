@@ -2043,6 +2043,28 @@ $(() => {
         loadDemoProfile();
     });
 
+    // Force Refresh: Reloads the entire page and website
+    $('#forceBtn').on('click', function (e) {
+        e.preventDefault();
+        $(this).find('i').addClass('spin-animation');
+        setTimeout(() => {
+            window.location.reload();
+        }, 150);
+    });
+
+    // Clear search input button
+    $('#clrBtn').on('click', function () {
+        $('#acIn').val('').focus();
+        ST.setPref('lastIn', '');
+        hideAlert();
+    });
+
+    // Clear search history button
+    $('#clrHistBtn').on('click', function () {
+        ST.clearHist();
+        drawHistoryChips();
+    });
+
     // Wire History Chip Clicks (Analyze and Star)
     $('#histChips').on('click', '.hc-btn', function (e) {
         e.stopPropagation();

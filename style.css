@@ -1067,6 +1067,243 @@ a:hover {
     border-color: var(--bd);
 }
 
+
+/* =================================================================
+   PROFILE EXECUTIVE SECTION — DARK MODE TEXT COLOR FIXES
+================================================================= */
+.profile-title, #uName {
+    color: var(--tx) !important;
+    font-weight: 800;
+}
+.profile-handle, #uHdl {
+    color: var(--tm) !important;
+}
+.profile-bio, #uBio {
+    color: var(--tx-sec) !important;
+}
+
+/* Explicit Dark Theme: Ensure text is pure bright white & ultra-readable */
+[data-theme=dark] .ca-hero #uName,
+html[data-theme=dark] #uName,
+[data-theme=dark] .profile-title {
+    color: #ffffff !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme=dark] .ca-hero #uHdl,
+html[data-theme=dark] #uHdl,
+[data-theme=dark] .profile-handle {
+    color: #cbd5e1 !important;
+}
+
+[data-theme=dark] .ca-hero #uBio,
+html[data-theme=dark] #uBio,
+[data-theme=dark] .profile-bio {
+    color: #f1f5f9 !important;
+    line-height: 1.6;
+}
+
+[data-theme=dark] .ca-hero #uCat {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+[data-theme=dark] .ca-hero .btn-glass {
+    color: #f8fafc !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+[data-theme=dark] .ca-hero .btn-glass:hover {
+    color: #ffffff !important;
+    border-color: var(--ac) !important;
+    background: rgba(220, 39, 67, 0.18) !important;
+}
+
+[data-theme=dark] h1, [data-theme=dark] h2, [data-theme=dark] h3,
+[data-theme=dark] h4, [data-theme=dark] h5, [data-theme=dark] h6 {
+    color: #ffffff;
+}
+
+[data-theme=dark] .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* =================================================================
+   MOBILE VIEW ONLY ALIGNMENT ADJUSTMENTS (max-width: 768px)
+   Targets .search-container, .nav-c, and .ca-hero specifically
+================================================================= */
+@media (max-width: 768px) {
+    /* 1. Top Container (.search-container) Alignment */
+    .search-container {
+        padding: 16px 14px !important;
+        margin-bottom: 18px !important;
+        border-radius: 16px !important;
+    }
+    
+    /* Top Controls Bar: Clean vertical stack */
+    .search-container .search-top-bar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        margin-bottom: 16px !important;
+    }
+    
+    .search-title-wrap {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+    
+    .search-title-wrap h5 {
+        font-size: 15px !important;
+    }
+    
+    .search-controls-wrap {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+    }
+    
+    /* Compare toggle and dropdown on mobile */
+    .cmp-toggle-wrapper {
+        flex: 1 1 auto !important;
+        justify-content: center !important;
+        padding: 6px 10px !important;
+    }
+    
+    #limSel {
+        flex: 1 1 auto !important;
+        min-width: 120px !important;
+        max-width: 150px !important;
+        font-size: 12px !important;
+        padding: 5px 8px !important;
+    }
+    
+    #forceBtn {
+        flex: 1 1 100% !important;
+        justify-content: center !important;
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+    }
+    
+    /* Search input row on mobile */
+    #sinRow {
+        row-gap: 10px !important;
+    }
+    
+    .search-unified-group {
+        padding: 4px 6px 4px 12px !important;
+    }
+    
+    .search-unified-input {
+        font-size: 14px !important;
+        padding: 8px 4px !important;
+    }
+    
+    #srchBtn {
+        height: 46px !important;
+        font-size: 15px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Suggestions row on mobile */
+    .suggestions-wrap {
+        margin-top: 14px !important;
+        gap: 6px !important;
+    }
+    
+    .suggestions-label {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 2px !important;
+    }
+    
+    .qc {
+        padding: 4px 10px !important;
+        font-size: 11px !important;
+    }
+    
+    /* Recent History on mobile */
+    .hist-section {
+        margin-top: 14px !important;
+        padding-top: 12px !important;
+    }
+    
+    .history-label {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 4px !important;
+    }
+    
+    .hc-chip {
+        padding: 3px 5px 3px 10px !important;
+    }
+    
+    .hc-btn {
+        font-size: 11px !important;
+    }
+    
+    /* 2. Top Nav on mobile */
+    .nav-c {
+        padding: 8px 0 !important;
+    }
+    .nav-brand {
+        font-size: 1.1rem !important;
+    }
+    .brand-badge {
+        font-size: 9px !important;
+        padding: 1px 5px !important;
+    }
+    #navDemoBtn {
+        padding: 4px 8px !important;
+        font-size: 11px !important;
+    }
+    #quickWatchlistBtn {
+        padding: 4px 8px !important;
+        font-size: 11px !important;
+    }
+    
+    /* 3. Profile Executive Header on mobile */
+    .ca-hero {
+        padding: 18px 14px !important;
+    }
+    
+    .ca-hero > .d-flex {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 16px !important;
+    }
+    
+    .ca-hero .d-flex.align-items-center.gap-3 {
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+    
+    .ca-hero #uName {
+        font-size: 1.35rem !important;
+    }
+    
+    .ca-hero .np {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+    
+    .ca-hero .np .btn {
+        flex: 1 1 calc(50% - 6px) !important;
+        font-size: 11px !important;
+        padding: 6px 8px !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+}
+
 /* Print Optimization */
 @media print {
     .np, .dashboard-tabs, .search-container, .nav-c {

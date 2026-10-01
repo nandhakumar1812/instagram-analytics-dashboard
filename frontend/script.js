@@ -2018,6 +2018,7 @@ $(() => {
 
     const savedTheme = ST.pref('theme', 'dark');
     document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-bs-theme', savedTheme);
     $('#themeIco').attr('class', savedTheme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill');
 
     drawHistoryChips();
@@ -2240,6 +2241,7 @@ $(() => {
         const curr = document.documentElement.getAttribute('data-theme');
         const next = curr === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
+        document.documentElement.setAttribute('data-bs-theme', next);
         ST.setPref('theme', next);
         $('#themeIco').attr('class', next === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill');
 

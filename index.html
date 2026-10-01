@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -61,15 +61,15 @@
         <!-- SEARCH & INPUT COMMAND CENTER -->
         <div class="search-container np">
             <!-- Top Controls Bar -->
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
-                <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 search-top-bar">
+                <div class="d-flex align-items-center gap-2 search-title-wrap">
                     <div class="search-title-icon">
                         <i class="bi bi-search"></i>
                     </div>
                     <h5 class="fw8 mb-0" style="letter-spacing:-0.3px;">Instagram Profile Intelligence</h5>
                 </div>
                 
-                <div class="d-flex align-items-center gap-3 flex-wrap">
+                <div class="d-flex align-items-center gap-3 flex-wrap search-controls-wrap">
                     <div class="cmp-toggle-wrapper" id="cmpToggleWrap" role="button" title="Toggle Side-by-Side Compare">
                         <span class="cmp-toggle-track" id="cmpToggle">
                             <span class="cmp-toggle-thumb"></span>
@@ -139,8 +139,8 @@
             </div>
 
             <!-- Quick Profile Chips Row -->
-            <div class="d-flex align-items-center gap-2 mt-4 flex-wrap">
-                <span style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">SUGGESTIONS:</span>
+            <div class="d-flex align-items-center gap-2 mt-4 flex-wrap suggestions-wrap">
+                <span class="suggestions-label" style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">SUGGESTIONS:</span>
                 <span class="qc" data-u="cristiano"><i class="bi bi-star-fill text-warning"></i> @cristiano</span>
                 <span class="qc" data-u="leomessi"><i class="bi bi-star-fill text-warning"></i> @leomessi</span>
                 <span class="qc" data-u="selenagomez">@selenagomez</span>
@@ -153,7 +153,7 @@
             <div id="histWrap" class="hist-section d-none">
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <span style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">RECENT SEARCHES:</span>
+                        <span class="history-label" style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">RECENT SEARCHES:</span>
                         <div id="histChips" class="d-flex gap-2 flex-wrap align-items-center"></div>
                     </div>
                     <button id="clrHistBtn" class="btn btn-sm btn-link text-muted text-decoration-none" style="font-size:11px" title="Clear history">
@@ -204,12 +204,12 @@
                         <img id="uAv" src="" class="av" alt="Profile Picture" referrerpolicy="no-referrer">
                         <div>
                             <div class="d-flex align-items-center gap-2 flex-wrap">
-                                <h3 class="fw8 mb-0" id="uName">--</h3>
+                                <h3 class="fw8 mb-0 profile-title" id="uName">--</h3>
                                 <i id="verBadge" class="bi bi-patch-check-fill text-primary fs-5 d-none" title="Verified Account"></i>
                                 <span class="badge bg-dark text-light border border-secondary small ms-1" id="uCat">Public Profile</span>
                             </div>
-                            <div class="text-muted mt-1" id="uHdl" style="font-size:15px;font-weight:600">@--</div>
-                            <p class="text-muted small mt-2 mb-0" id="uBio" style="max-width:650px;line-height:1.6"></p>
+                            <div class="profile-handle mt-1" id="uHdl" style="font-size:15px;font-weight:600">@--</div>
+                            <p class="profile-bio small mt-2 mb-0" id="uBio" style="max-width:650px;line-height:1.6"></p>
                         </div>
                     </div>
                     

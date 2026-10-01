@@ -201,61 +201,236 @@ a:hover {
 }
 
 /* =================================================================
-   SEARCH SECTION & INPUTS
+   SEARCH SECTION & INPUTS (REFINED LUXURY UI)
 ================================================================= */
 .search-container {
     background: var(--sf);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--bd);
-    border-radius: var(--rl);
-    padding: 24px;
-    box-shadow: var(--sh);
-    margin-bottom: 24px;
+    border-radius: 20px;
+    padding: 26px 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    margin-bottom: 28px;
+    transition: border-color .25s ease, box-shadow .25s ease;
 }
 
-.input-glass {
-    background: var(--sf2) !important;
-    border: 1px solid var(--bd) !important;
-    color: var(--tx) !important;
-    border-radius: 12px !important;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all .2s;
+.search-title-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(220, 39, 67, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--ac);
+    box-shadow: 0 2px 8px rgba(220, 39, 67, 0.15);
+}
+
+/* Compare Mode Toggle Switch */
+.cmp-toggle-wrapper {
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--sf2);
+    border: 1px solid var(--bd);
+    transition: all .2s ease;
+}
+.cmp-toggle-wrapper:hover {
+    border-color: rgba(220, 39, 67, 0.35);
+    background: rgba(220, 39, 67, 0.05);
+}
+.cmp-toggle-track {
+    width: 40px;
+    height: 22px;
+    background: rgba(120, 130, 150, 0.25);
+    border-radius: 20px;
+    position: relative;
+    display: inline-block;
+    transition: all .25s ease;
+}
+.cmp-toggle-thumb {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform .25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.cmp-toggle-track.on {
+    background: var(--ig);
+    box-shadow: 0 0 12px rgba(220, 39, 67, 0.45);
+}
+.cmp-toggle-track.on .cmp-toggle-thumb {
+    transform: translateX(18px);
+}
+.cmp-toggle-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--tm);
+    transition: color .2s;
+}
+.cmp-toggle-track.on + .cmp-toggle-label,
+.cmp-toggle-wrapper:hover .cmp-toggle-label {
+    color: var(--tx);
+}
+
+/* Unified Search Input Field */
+.search-unified-group {
+    display: flex;
+    align-items: center;
+    background: var(--sf2);
+    border: 1px solid var(--bd);
+    border-radius: 14px;
     box-shadow: var(--neu-inset);
+    transition: all .25s ease;
+    padding: 4px 8px 4px 16px;
 }
-
-.input-glass:focus {
-    border-color: var(--ac) !important;
-    box-shadow: 0 0 0 3px rgba(220, 39, 67, 0.25) !important;
-    background: var(--sf) !important;
+.search-unified-group:focus-within {
+    border-color: var(--ac);
+    box-shadow: 0 0 0 3px rgba(220, 39, 67, 0.2), var(--neu-inset);
+    background: var(--sf);
 }
-
-.input-glass::placeholder {
+.search-prefix-icon {
+    font-size: 20px;
+    color: var(--tm);
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+.search-unified-input {
+    flex: 1;
+    border: none !important;
+    background: transparent !important;
+    color: var(--tx) !important;
+    font-size: 15px;
+    font-weight: 500;
+    outline: none !important;
+    padding: 10px 4px;
+    box-shadow: none !important;
+}
+.search-unified-input::placeholder {
     color: var(--tm);
     font-weight: 400;
 }
+.search-clear-btn {
+    border: none;
+    background: transparent;
+    color: var(--tm);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .2s;
+    font-size: 14px;
+}
+.search-clear-btn:hover {
+    color: var(--tx);
+    background: rgba(255, 255, 255, 0.08);
+}
 
-/* Quick chips */
+/* Quick Suggestion Chips */
 .qc {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 14px;
+    padding: 6px 14px;
     border-radius: 20px;
     background: var(--sf2);
     border: 1px solid var(--bd);
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: all .2s;
+    transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--tx-sec);
 }
 .qc:hover, .qc.aqc {
     background: var(--ig);
     border-color: transparent;
     color: #fff;
-    box-shadow: var(--ig-glow);
+    box-shadow: 0 4px 14px rgba(220, 39, 67, 0.35);
+    transform: translateY(-2px);
+}
+
+/* History Section & Interactive Chips */
+.hist-section {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+[data-theme=light] .hist-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+.hc-chip {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(120, 130, 150, 0.08);
+    border: 1px solid var(--bd);
+    border-radius: 20px;
+    padding: 4px 6px 4px 12px;
+    gap: 6px;
+    transition: all .2s ease;
+    cursor: pointer;
+}
+.hc-chip:hover {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.4);
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.hc-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--tx-sec);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+.hc-chip:hover .hc-btn {
+    color: var(--tx);
+}
+.hc-star-btn {
+    border: none;
+    background: transparent;
+    color: var(--tm);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .15s ease;
+    padding: 0;
+}
+.hc-star-btn:hover {
+    color: #eab308;
+    transform: scale(1.2);
+}
+.hc-star-btn.starred {
+    color: #eab308;
+}
+
+/* Active Bookmark state on Profile Header */
+#bookmarkBtn.active-bookmark {
+    background: rgba(234, 179, 8, 0.15) !important;
+    border-color: rgba(234, 179, 8, 0.4) !important;
+    color: #eab308 !important;
 }
 
 /* =================================================================

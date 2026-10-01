@@ -60,25 +60,24 @@
         
         <!-- SEARCH & INPUT COMMAND CENTER -->
         <div class="search-container np">
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-3">
-                <div>
-                    <h5 class="fw8 mb-1">
-                        <i class="bi bi-search me-2" style="color:var(--ac)"></i>Instagram Profile Intelligence
-                    </h5>
-                    <p class="mb-0" style="font-size:12px;color:var(--tm)">
-                        Live data via secure Apify backend &middot; Rule-based AI analyst &middot; Full metrics suite
-                    </p>
+            <!-- Top Controls Bar -->
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="search-title-icon">
+                        <i class="bi bi-search"></i>
+                    </div>
+                    <h5 class="fw8 mb-0" style="letter-spacing:-0.3px;">Instagram Profile Intelligence</h5>
                 </div>
                 
                 <div class="d-flex align-items-center gap-3 flex-wrap">
-                    <label class="tg-w" id="cmpLabel" title="Toggle Side-by-Side Compare">
-                        <div class="tg-t" id="cmpToggle">
-                            <div class="tg-th"></div>
-                        </div>
-                        <span style="font-size:13px;font-weight:600;color:var(--tm)">Compare Mode</span>
-                    </label>
+                    <div class="cmp-toggle-wrapper" id="cmpToggleWrap" role="button" title="Toggle Side-by-Side Compare">
+                        <span class="cmp-toggle-track" id="cmpToggle">
+                            <span class="cmp-toggle-thumb"></span>
+                        </span>
+                        <span class="cmp-toggle-label">Compare Mode</span>
+                    </div>
                     
-                    <select id="limSel" class="form-select form-select-sm input-glass" style="width:120px;font-size:12px">
+                    <select id="limSel" class="form-select form-select-sm input-glass" style="min-width:145px;width:auto;font-size:13px;font-weight:600;padding:6px 12px;cursor:pointer;">
                         <option value="12">12 posts sample</option>
                         <option value="24">24 posts sample</option>
                         <option value="36">36 posts sample</option>
@@ -90,60 +89,58 @@
                 </div>
             </div>
 
-            <!-- Single Account Input -->
-            <div id="sinRow" class="row g-2 align-items-center">
+            <!-- Single Account Input Row -->
+            <div id="sinRow" class="row g-3 align-items-center">
                 <div class="col-lg-9 col-md-8">
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text input-glass border-end-0">
-                            <i class="bi bi-at text-muted fs-5"></i>
-                        </span>
-                        <input type="text" id="acIn" class="form-control form-control-lg input-glass border-start-0"
+                    <div class="search-unified-group">
+                        <span class="search-prefix-icon"><i class="bi bi-at"></i></span>
+                        <input type="text" id="acIn" class="search-unified-input"
                             placeholder="Enter Instagram @username (e.g. cristiano, leomessi, nike) or profile URL"
                             autocomplete="off" spellcheck="false">
+                        <button type="button" id="clrBtn" class="search-clear-btn" title="Clear input">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 d-flex gap-2">
-                    <button id="srchBtn" class="btn btn-ig btn-ia btn-lg w-100 fw7">
+                <div class="col-lg-3 col-md-4">
+                    <button id="srchBtn" class="btn btn-ig btn-ia btn-lg w-100 fw7" style="height:50px;">
                         <i class="bi bi-lightning-charge-fill me-1"></i> Analyze Live
-                    </button>
-                    <button id="clrBtn" class="btn btn-glass btn-ia btn-lg" title="Clear input">
-                        <i class="bi bi-x-lg"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Compare Mode Dual Inputs -->
+            <!-- Compare Mode Dual Inputs Row -->
             <div id="cmpRow" class="d-none mt-3">
-                <div class="row g-2">
+                <div class="row g-3">
                     <div class="col-md-5">
                         <label class="form-label" style="font-size:12px;font-weight:700;color:var(--tm)">
                             <span class="badge rounded-pill bg-danger me-1">Account A</span> Target Profile
                         </label>
-                        <div class="input-group">
-                            <span class="input-group-text input-glass border-end-0"><i class="bi bi-at text-muted"></i></span>
-                            <input type="text" id="acInA" class="form-control input-glass border-start-0" placeholder="@username A" autocomplete="off">
+                        <div class="search-unified-group">
+                            <span class="search-prefix-icon"><i class="bi bi-at"></i></span>
+                            <input type="text" id="acInA" class="search-unified-input" placeholder="@username A" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-5">
                         <label class="form-label" style="font-size:12px;font-weight:700;color:var(--tm)">
                             <span class="badge rounded-pill bg-primary me-1">Account B</span> Competitor Profile
                         </label>
-                        <div class="input-group">
-                            <span class="input-group-text input-glass border-end-0"><i class="bi bi-at text-muted"></i></span>
-                            <input type="text" id="acInB" class="form-control input-glass border-start-0" placeholder="@username B" autocomplete="off">
+                        <div class="search-unified-group">
+                            <span class="search-prefix-icon"><i class="bi bi-at"></i></span>
+                            <input type="text" id="acInB" class="search-unified-input" placeholder="@username B" autocomplete="off">
                         </div>
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
-                        <button id="cmpBtn" class="btn btn-ig btn-ia w-100 fw7" style="height:42px">
+                        <button id="cmpBtn" class="btn btn-ig btn-ia w-100 fw7" style="height:48px;">
                             <i class="bi bi-intersect me-1"></i> Compare
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Profile Chips -->
-            <div class="d-flex align-items-center gap-2 mt-3 flex-wrap">
-                <span style="font-size:11px;font-weight:800;letter-spacing:.5px;color:var(--tm)">SUGGESTIONS:</span>
+            <!-- Quick Profile Chips Row -->
+            <div class="d-flex align-items-center gap-2 mt-4 flex-wrap">
+                <span style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">SUGGESTIONS:</span>
                 <span class="qc" data-u="cristiano"><i class="bi bi-star-fill text-warning"></i> @cristiano</span>
                 <span class="qc" data-u="leomessi"><i class="bi bi-star-fill text-warning"></i> @leomessi</span>
                 <span class="qc" data-u="selenagomez">@selenagomez</span>
@@ -152,13 +149,12 @@
                 <span class="qc" data-u="natgeo">@natgeo</span>
             </div>
 
-            <!-- Recent History Section -->
-            <div id="histWrap" class="mt-3 d-none">
-                <hr class="dvd my-2">
+            <!-- Recent History Section Row -->
+            <div id="histWrap" class="hist-section d-none">
                 <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
                     <div class="d-flex align-items-center gap-2 flex-wrap">
-                        <span style="font-size:11px;font-weight:800;letter-spacing:.5px;color:var(--tm)">HISTORY:</span>
-                        <div id="histChips" class="d-flex gap-2 flex-wrap"></div>
+                        <span style="font-size:11px;font-weight:800;letter-spacing:.6px;color:var(--tm)">RECENT SEARCHES:</span>
+                        <div id="histChips" class="d-flex gap-2 flex-wrap align-items-center"></div>
                     </div>
                     <button id="clrHistBtn" class="btn btn-sm btn-link text-muted text-decoration-none" style="font-size:11px" title="Clear history">
                         <i class="bi bi-trash3 me-1"></i> Clear

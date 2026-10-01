@@ -1990,11 +1990,19 @@ function drawHistoryChips() {
         return;
     }
     $('#histWrap').removeClass('d-none');
-    $('#histChips').html(history.map(u => `
-        <span class="hc" data-u="${esc(u)}">
-            <i class="bi bi-clock-history" style="font-size:10px"></i> @${esc(u)}
-        </span>
-    `).join(''));
+    $('#histChips').html(history.map(u => {
+        const isWl = ST.isWatchlisted(u);
+        return `
+        <div class="hc-chip" data-u="${esc(u)}" title="Search @${esc(u)}">
+            <span class="hc-btn" data-u="${esc(u)}">
+                <i class="bi bi-clock-history me-1 text-muted" style="font-size:11px"></i>@${esc(u)}
+            </span>
+            <button class="hc-star-btn ${isWl ? 'starred' : ''}" data-u="${esc(u)}" title="${isWl ? 'Remove @' + esc(u) + ' from Watchlist' : 'Add @' + esc(u) + ' to Watchlist'}">
+                <i class="bi ${isWl ? 'bi-bookmark-check-fill' : 'bi-bookmark-plus'}"></i>
+            </button>
+        </div>
+        `;
+    }).join(''));
 }
 
 /* =================================================================
@@ -2023,10 +2031,79 @@ $(() => {
     $('#cmpBtn').on('click', runCompareAnalysis);
     $('#acInA, #acInB').on('keypress', e => { if (e.which === 13) runCompareAnalysis(); });
 
-    $('#cmpToggle, #cmpLabel').on('click', function (e) {
-        if (e.target.tagName !== 'INPUT') {
-            togCmp(!compareMode, true);
+    $('#cmpToggleWrap').on('click', function (e) {
+        e.preventDefault();
+        togCmp(!compareMode, true);
+    });
+
+    // Wire Explore Demo buttons in navbar and empty state
+    $('#navDemoBtn, #loadDemoBtn').on('click', function (e) {
+        e.preventDefault();
+        loadDemoProfile();
+    });
+
+    // Wire History Chip Clicks (Analyze and Star)
+    $('#histChips').on('click', '.hc-btn', function (e) {
+        e.stopPropagation();
+        const u = $(this).data('u');
+        if (compareMode) {
+            if (!$('#acInA').val()) $('#acInA').val(u);
+            else $('#acInB').val(u);
+        } else {
+            $('#acIn').val(u);
+            runSingleAnalysis();
         }
+    });
+
+    $('#histChips').on('click', '.hc-star-btn', function (e) {
+        e.stopPropagation();
+        const u = $(this).data('u');
+        const cached = ST.gc(u);
+        if (cached) {
+            const m = MX.compute(cached);
+            const s = SC.compute(m);
+            ST.toggleWatchlist(cached, s);
+        } else {
+            if (ST.isWatchlisted(u)) {
+                ST.removeWatchlist(u);
+            } else {
+                let wl = ST.getWatchlist();
+                wl.unshift({
+                    username: u,
+                    fullName: u,
+                    followers: 0,
+                    score: '--',
+                    grade: '--',
+                    avatar: letterAv(u, 160),
+                    savedAt: new Date().toLocaleDateString()
+                });
+                ST._s('ia_watchlist', wl);
+            }
+        }
+        drawHistoryChips();
+        updateBookmarkState();
+        renderPortfolioTab();
+        showAlert(ST.isWatchlisted(u) ? `@${u} added to Watchlist!` : `@${u} removed from Watchlist.`);
+    });
+
+    // Wire Watchlist Grid actions
+    $('#watchlistGrid').on('click', '.wl-load-btn', function () {
+        const u = $(this).data('u');
+        $('#acIn').val(u);
+        runSingleAnalysis();
+        $('.d-tab-btn').removeClass('active');
+        $('[data-tab="tab-overview"]').addClass('active');
+        $('.tab-pane-content').addClass('d-none');
+        $('#tab-overview').removeClass('d-none');
+    });
+
+    $('#watchlistGrid').on('click', '.wl-del-btn', function () {
+        const u = $(this).data('u');
+        ST.removeWatchlist(u);
+        updateBookmarkState();
+        drawHistoryChips();
+        renderPortfolioTab();
+        showAlert(`@${u} removed from Watchlist.`);
     });
 
     $('#forceBtn').on('click', function () {
@@ -2120,9 +2197,13 @@ $(() => {
 
     // 5. Watchlist Bookmark Button
     $('#bookmarkBtn').on('click', function () {
-        if (!currentData || !currentMetrics) return;
+        if (!currentData) {
+            showAlert('Analyze a profile first or explore the demo to bookmark.');
+            return;
+        }
         const saved = ST.toggleWatchlist(currentData, currentScore);
         updateBookmarkState();
+        drawHistoryChips();
         renderPortfolioTab();
         showAlert(saved ? `@${currentData.username} saved to your Watchlist!` : `@${currentData.username} removed from Watchlist.`);
     });
